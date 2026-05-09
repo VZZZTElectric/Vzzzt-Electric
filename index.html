@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+    <section class="services-card">
+      <div class="services-head">
+        <div>
+          <h2>Residential electrical service</h2>
+          <p>Focused small-job service for problems homeowners can clearly identify but should not guess at.</p>
+        </div>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-item"><span>✸</span> Electrical shocks / tingling</div>
+        <div class="service-item"><span>✸</span> Electrical troubleshooting</div>
+        <div class="service-item"><span>✸</span> Tripping breakers</div>
         <div class="service-item"><span>✸</span> Flickering lights</div>
         <div class="service-item"><span>✸</span> Partial power loss</div>
         <div class="service-item"><span>✸</span> Sparking outlets</div>
@@ -9,30 +21,30 @@
       </div>
     </section>
 
-    <section class="note" aria-label="Service details">
-      <div class="note-card">
+    <section class="info-row">
+      <div class="info-card">
         <h3>Small Jobs</h3>
-        <p>Focused residential calls, troubleshooting, repairs, and light installation work.</p>
+        <p>Troubleshooting, repairs, lighting, and focused residential service calls.</p>
       </div>
-      <div class="note-card">
+      <div class="info-card">
         <h3>Text First</h3>
-        <p>Send a short description and, when helpful, a photo of the problem area.</p>
+        <p>Describe the issue, send a photo, and get the next step without a long phone call.</p>
       </div>
-      <div class="note-card">
+      <div class="info-card">
         <h3>Ramona Area</h3>
-        <p>Local residential service for homeowners in and around Ramona.</p>
+        <p>Local residential electrical service in and around Ramona, California.</p>
       </div>
     </section>
 
     <footer>
       <div>© <span id="year"></span> VZZZT Electrical Service</div>
-      <div>service@vzzzt.com</div>
+      <div>vzzzt.com</div>
     </footer>
   </main>
 
   <script>
     // Replace this with the Google Voice number when ready.
-    // Use only digits in PHONE_DIGITS, for example: "7605551212".
+    // Use only digits, for example: "7605551212".
     const PHONE_DIGITS = "0000000000";
 
     function formatPhoneNumber(digits) {
@@ -47,9 +59,10 @@
 
     if (/^\d{10}$/.test(PHONE_DIGITS) && PHONE_DIGITS !== "0000000000") {
       textButton.href = `sms:+1${PHONE_DIGITS}?&body=${encodeURIComponent("Hi, I have an electrical issue at my home. ")}`;
+      textButton.textContent = "⚡ Text Your Issue";
     } else {
       textButton.href = "mailto:service@vzzzt.com?subject=Electrical%20Service%20Request";
-      textButton.textContent = "Email Until Text Number Is Added";
+      textButton.textContent = "⚡ Email Until Text Number Is Added";
     }
 
     document.getElementById("year").textContent = new Date().getFullYear();
