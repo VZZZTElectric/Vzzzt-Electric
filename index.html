@@ -1,4 +1,445 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VZZZT Electrical Service provides small residential electrical troubleshooting and repair calls in the Ramona area. Text preferred." />
+  <title>VZZZT Electrical Service | Ramona Residential Electrical Troubleshooting</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --ink: #f8f8f8;
+      --muted: #bdbdbd;
+      --soft: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.16);
+      --yellow: #ffd43b;
+      --orange: #ff8a2a;
+      --red: #ff3b1f;
+      --panel: rgba(18,18,18,.86);
+      --panel2: rgba(31,31,31,.74);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(255, 212, 59, .24), transparent 28%),
+        radial-gradient(circle at 84% 16%, rgba(255, 59, 31, .16), transparent 24%),
+        linear-gradient(135deg, #030303 0%, #090909 45%, #15110a 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .wrap {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      padding: 28px 0 54px;
+      position: relative;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 14px 0 30px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, var(--yellow), var(--orange));
+      color: #070707;
+      font-size: 34px;
+      font-weight: 950;
+      box-shadow: 0 0 32px rgba(255, 212, 59, .32), inset 0 -4px 10px rgba(0,0,0,.18);
+    }
+
+    .mini-title {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .mini-subtitle {
+      color: white;
+      font-size: 17px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .contact-pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.055);
+      border-radius: 999px;
+      padding: 10px 15px;
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-card, .urgent-card, .services-card, .info-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), rgba(8,8,8,.82));
+      box-shadow: 0 28px 80px rgba(0,0,0,.36);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card {
+      border-radius: 34px;
+      padding: clamp(30px, 5vw, 58px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,212,59,.22), transparent 63%);
+    }
+
+    .logo-word {
+      font-size: clamp(62px, 12vw, 138px);
+      line-height: .82;
+      font-weight: 950;
+      letter-spacing: -.085em;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+      text-shadow: 0 0 30px rgba(255,255,255,.08);
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-word .bolt-z {
+      display: inline-block;
+      color: var(--yellow);
+      text-shadow: 0 0 24px rgba(255,212,59,.55);
+      transform: skew(-9deg) scaleY(1.08);
+      margin: 0 -.01em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5.8vw, 66px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(18px, 2.1vw, 23px);
+      margin: 22px 0 0;
+      max-width: 700px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 950;
+      letter-spacing: .01em;
+    }
+
+    .btn.primary {
+      color: #070707;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      box-shadow: 0 12px 30px rgba(255,138,42,.28);
+    }
+
+    .btn.secondary {
+      color: white;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+    }
+
+    .urgent-card {
+      border-radius: 34px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .urgent-card h2, .services-card h2, .info-card h2 {
+      margin: 0 0 16px;
+      font-size: 26px;
+      letter-spacing: -.025em;
+    }
+
+    .phone-box {
+      border-radius: 24px;
+      padding: 22px;
+      background: linear-gradient(135deg, rgba(255,212,59,.13), rgba(255,59,31,.10));
+      border: 1px solid rgba(255,212,59,.28);
+    }
+
+    .label {
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 950;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    #phone-display {
+      display: block;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 950;
+      letter-spacing: -.04em;
+    }
+
+    .email-link {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .hint {
+      color: var(--muted);
+      margin: 14px 0 0;
+      font-size: 15px;
+    }
+
+    .quick-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 13px;
+    }
+
+    .quick-list li {
+      display: flex;
+      gap: 11px;
+      font-weight: 850;
+      font-size: 17px;
+    }
+
+    .quick-list li::before {
+      content: "✸";
+      color: var(--yellow);
+      flex: 0 0 auto;
+    }
+
+    .services-card {
+      border-radius: 34px;
+      padding: clamp(26px, 4vw, 42px);
+      margin-top: 24px;
+    }
+
+    .services-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .services-head p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 560px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 18px;
+      padding: 15px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.09);
+      font-weight: 850;
+    }
+
+    .service-item span {
+      color: var(--yellow);
+      font-size: 18px;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .info-card {
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .info-card h3 {
+      color: var(--yellow);
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    footer {
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      margin-top: 34px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .topbar, .hero, .services-head, .info-row {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .contact-pill { justify-self: start; }
+      .service-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .mark { width: 50px; height: 50px; font-size: 29px; }
+      .brand-lockup { gap: 12px; }
+      .hero-card, .urgent-card, .services-card { border-radius: 24px; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="mark" aria-hidden="true">⚡</div>
+        <div>
+          <div class="mini-title">VZZZT Electrical Service</div>
+          <div class="mini-subtitle">Ramona residential calls</div>
+        </div>
+      </div>
+      <a class="contact-pill" href="mailto:service@vzzzt.com">service@vzzzt.com</a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="logo-word" aria-label="VZZZT">VZ<span class="bolt-z">Z</span>ZT</div>
+        <h1>Small electrical problems can become serious fast.</h1>
+        <p class="lead">
+          Residential troubleshooting and small repair calls for tripping breakers, flickering lights, sparks, buzzing panels, strange electrical smells, and sudden power loss.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" id="text-button" href="mailto:service@vzzzt.com?subject=Electrical%20Service%20Request">⚡ Text Your Issue</a>
+          <a class="btn secondary" href="mailto:service@vzzzt.com?subject=Electrical%20Service%20Request">Email Service Request</a>
+        </div>
+      </div>
+
+      <aside class="urgent-card">
+        <div class="phone-box">
+          <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+            <div style="flex:1 1 240px; min-width:220px;">
+
+          <div class="label">Text Preferred</div>
+          <span id="phone-display">(XXX) XXX-XXXX</span>
+          <a class="email-link" href="mailto:service@vzzzt.com">service@vzzzt.com</a>
+          <p class="hint">Text preferred. Describe the issue and send a photo if helpful.</p>
+              <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:12px;">
+                <a class="btn primary" style="min-height:44px; padding:10px 16px; font-size:14px;" href="mailto:service@vzzzt.com?subject=Electrical%20Service%20Request">⚡ Contact Service Now</a>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <div style="background:white; padding:10px; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,.25);">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://vzzzt.com" alt="QR Code for VZZZT.com" width="140" height="140" style="display:block; border-radius:8px;" />
+              </div>
+              <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:800;">Scan to Contact</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2>Call for issues like:</h2>
+          <ul class="quick-list">
+            <li>Breaker keeps tripping</li>
+            <li>Outlet or switch sparks</li>
+            <li>Burning electrical smell</li>
+            <li>Buzzing electrical panel</li>
+            <li>Power lost in one area</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
     <section class="services-card">
       <div class="services-head">
         <div>
@@ -69,3 +510,4 @@
   </script>
 </body>
 </html>
+
