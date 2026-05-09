@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+        <div class="service-item"><span>✸</span> Flickering lights</div>
+        <div class="service-item"><span>✸</span> Partial power loss</div>
+        <div class="service-item"><span>✸</span> Sparking outlets</div>
+        <div class="service-item"><span>✸</span> Burning smells</div>
+        <div class="service-item"><span>✸</span> Buzzing panels</div>
+        <div class="service-item"><span>✸</span> Dead outlets / lights</div>
+        <div class="service-item"><span>✸</span> Lighting installation</div>
+      </div>
+    </section>
+
+    <section class="note" aria-label="Service details">
+      <div class="note-card">
+        <h3>Small Jobs</h3>
+        <p>Focused residential calls, troubleshooting, repairs, and light installation work.</p>
+      </div>
+      <div class="note-card">
+        <h3>Text First</h3>
+        <p>Send a short description and, when helpful, a photo of the problem area.</p>
+      </div>
+      <div class="note-card">
+        <h3>Ramona Area</h3>
+        <p>Local residential service for homeowners in and around Ramona.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> VZZZT Electrical Service</div>
+      <div>service@vzzzt.com</div>
+    </footer>
+  </main>
+
+  <script>
+    // Replace this with the Google Voice number when ready.
+    // Use only digits in PHONE_DIGITS, for example: "7605551212".
+    const PHONE_DIGITS = "0000000000";
+
+    function formatPhoneNumber(digits) {
+      if (!/^\d{10}$/.test(digits) || digits === "0000000000") return "(XXX) XXX-XXXX";
+      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+
+    const phoneDisplay = document.getElementById("phone-display");
+    const textButton = document.getElementById("text-button");
+
+    phoneDisplay.textContent = formatPhoneNumber(PHONE_DIGITS);
+
+    if (/^\d{10}$/.test(PHONE_DIGITS) && PHONE_DIGITS !== "0000000000") {
+      textButton.href = `sms:+1${PHONE_DIGITS}?&body=${encodeURIComponent("Hi, I have an electrical issue at my home. ")}`;
+    } else {
+      textButton.href = "mailto:service@vzzzt.com?subject=Electrical%20Service%20Request";
+      textButton.textContent = "Email Until Text Number Is Added";
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
